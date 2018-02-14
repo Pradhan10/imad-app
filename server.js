@@ -21,15 +21,15 @@ app.get('/ui/main.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'main.js'));
 });
 // Three pages containing articles
-app.get('/article-one.html', function (req, res) {
+app.get('/article-one', function (req, res) {
   res.send("This is where article one will be served");
 });
 
-app.get('/article-two.html', function (req, res) {
+app.get('/article-two', function (req, res) {
   res.send("This is where article TWO will be served");
 });
 
-app.get('/article-three.html', function (req, res) {
+app.get('/article-three', function (req, res) {
   res.send("This is where article 3 will be served");
 });
 // Do not change port, otherwise your app won't run on IMAD servers
