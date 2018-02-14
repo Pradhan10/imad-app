@@ -22,7 +22,7 @@ app.get('/ui/main.js', function (req, res) {
 });
 // Three pages containing articles
 app.get('/article-one', function (req, res) {
-  res.send("This is where article one will be served");
+  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
 });
 
 app.get('/article-two', function (req, res) {
