@@ -4,6 +4,12 @@ body {
     margin-top: 75px;
 }
 
+.container {
+    margin: 0 auto;
+    color:#00a0ee;
+    font-family:sans-serif;
+}
+
 .center {
     text-align: center;
 }
