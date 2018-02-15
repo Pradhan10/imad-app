@@ -3,7 +3,7 @@ var button = document.getElementById("clickme");
 var count = 0;
 button.onclick = function(){
     // Create request object
-    var request = new XMLHttpRequest()
+    var request = new XMLHttpRequest();
     // capture response and store it in variable
     request.onreadystatechange = function() {
         if (request.readyState === XMLHttpRequest.DONE){
