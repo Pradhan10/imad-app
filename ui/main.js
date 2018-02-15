@@ -8,4 +8,4 @@ button.onclick = function(){
     // update html
     count = count + 1;
     var display = document.getElementById("display").innnerHTML=count.toString;
-}
+};
