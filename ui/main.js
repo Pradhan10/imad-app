@@ -7,5 +7,5 @@ button.onclick = function(){
     // capture response and share result
     // update html
     count = count + 1;
-    var display = document.getElementById("display").innnerHTML=count.toString;
+    var display = document.getElementById("display").innnerHTML=count.toString();
 };
