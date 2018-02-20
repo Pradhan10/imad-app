@@ -31,13 +31,29 @@ var submit = document.getElementById('submit_btn');
 submit.onclick = function () {
 
 	//make a request to server and send the name
+		//Create a request
+	var request = new XMLHttpRequest();
+	//Capture the response and store it in a variable 
+	request.onreadystatechange = function() {
+		if (request.readyState === XMLHttpRequest.DONE){
+			//Take some action.
+			if (request.status === 200){
+			//Capture a list of names and render it as a list
+			var names = request.responseText;
+			names = JSON.parse(names);
+			var list = '';
+			for (var i=0; i<names.length; i++) {
+				list += '<li>' + names[i] + '</li>';
+		 	}
+			var ul = document.getElementById('namelist');
+			ul.innerHTML = list;			}
+		}
+		// Not done yet.
 	
-	//Capture a list of names and render it as a list
-	var names = ['one','two','oneBytwo'];
-	var list = '';
-	for (var i=0; i<names.length; i++) {
-		list += '<li>' + names[i] + '</li>';
- 	}
-	var ul = document.getElementById('namelist');
-	ul.innerHTML = list;
+	};
+	
+	//Make a request
+	request.open('GET','http://pradhanrishi10.imad.hasura-app.io/submit-name?name=' + name,true);
+	request.send(null);
+
 };
