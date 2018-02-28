@@ -20,18 +20,6 @@ var config = {
 
 var pool = new Pool(config);
 // DB test point
-app.get('/testdb', function(req, res) {
-    // Make a select request 
-    // return a response with the results
-    pool.query('SELECT * FROM test', function(err, result) {
-       if(err){
-           res.status(500).send(err.toString());
-       }else {
-           res.send(JSON.stringify(result));
-       }
-       
-    });
-});
 
 
 app.get('/', function (req, res) {
@@ -85,3 +73,18 @@ var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
+
+// -----TEST DB END POINT-----
+app.get('/testdb', function(req, res) {
+    // Make a select request 
+    // return a response with the results
+    pool.query('SELECT * FROM test', function(err, result) {
+       if(err){
+           res.status(500).send(err.toString());
+       }else {
+           res.send(JSON.stringify(result.rows));
+       }
+       
+    });
+});
+
