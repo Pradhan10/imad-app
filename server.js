@@ -92,27 +92,26 @@ app.get('/test-db',function(req,res)
 });
 
 app.get('/articles/:articleName', function (req, res){
- //aticleName == article-one
- //(articles[articleName]) == thw {} object of article one
- 
-/*to prevent sql injection as a user can do /articles/'; delete from articl where 'a'='a or any query like that we use libary funtion to use parameter inside the query
-old code:  pool.query("select * from article where title='"+req.params.articleName+"'", function(err,result){  we pass parameter as an array as asecond argument */
-
- pool.query("select * from article where title=$1",[req.params.articleName], function(err,result){
- 	if(err){
- 		res.status(500).send(err.toString());
- 	}
- 	else{
- 		if(result.rows.length === 0){
- 			res.status(404).send('Article not found');
- 		}
- 		else{
- 		    var articleData=result.rows[0];	
- 		    res.send(createTemplate(articleData)) ; 
- 		}
- 	}
- });
- });
+  // articleName == article-one
+  // articles[articleName] == {} content object for article one
+  
+  
+  
+  pool.query("SELECT * FROM article WHERE title = " + req.params.articleName, function (err, result){
+  
+    if(err){
+      res.status(500).send(err.toString());
+    } else {
+    	if (result.rows.length === 0){
+    		res.status(404).send("Article not found");
+    	} else {
+    		var articleData = result.rows[0];
+    		res.send(createTemplate(articleData));
+    	 }
+     }
+  });
+  
+});
  
 
 app.get('/ui/style.css', function (req, res) {
