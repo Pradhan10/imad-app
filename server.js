@@ -2,6 +2,8 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
+var crypto = require('crypto');
+
 
 var config ={
 	user: 'pradhanrishi10',
@@ -52,6 +54,21 @@ function createTemplate(data){
 	`;
 	return htmlTemplate;
 }
+
+
+function hash(input, salt) {
+    // How do we create a hash
+    var hashed = crypto.pbkdf2Sync(input, salt, 100000, 512, 'sha512');
+    return hashed.toString('hex');
+}
+
+/*CREATE end point for password hashing*/
+app.get('/hash/:input', function(req, res){
+    
+    var hashedString = hash(req.params.input, 'thisissomerandomstring');
+    res.send(hashedString);
+    
+});
 
 var counter=0;
 app.get('/counter', function (req, res) {
@@ -134,4 +151,4 @@ app.get('/ui/madi.png', function (req, res) {
 var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
-});
+}); 
