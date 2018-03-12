@@ -59,7 +59,7 @@ function createTemplate(data){
 function hash(input, salt) {
     // How do we create a hash
     var hashed = crypto.pbkdf2Sync(input, salt, 100000, 512, 'sha512');
-    return hashed.toString('hex');
+    return ["pbkd2", "10000", salt,hashed.toString('hex')].join('$');
 }
 
 /*CREATE end point for password hashing*/
