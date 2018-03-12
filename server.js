@@ -17,7 +17,7 @@ var config ={
 var app = express();
 app.use(morgan('combined'));
 // Tell express to extract json variables from body
-app.use(badyParser.json());
+app.use(bodyParser.json());
 
 var pool = new Pool(config);
 
